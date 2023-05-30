@@ -2,7 +2,8 @@
 
 void SigmaLoger::Log(SigmaLogLevel level)
 {
-	if (publisher!=NULL) {
+	if (publisher != NULL)
+	{
 		publisher(level, loger->c_str());
 	}
 	loger->clear();
@@ -55,3 +56,5 @@ const char *SigmaLoger::Timestamp()
 	sprintf(timestamp, "%.3f", millis() / 1000.0);
 	return timestamp;
 }
+
+SigmaLoger *Log;

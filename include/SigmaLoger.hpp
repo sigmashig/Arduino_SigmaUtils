@@ -2,7 +2,6 @@
 #include <Arduino.h>
 #include <SafeString.h>
 
-
 typedef enum
 {
 	SIGMALOG_OFF = 0,
@@ -183,3 +182,4 @@ private:
 	static void SerialPrint(SigmaLogLevel level, const char *message);
 	static const char *Timestamp();
 };
+extern SigmaLoger *Log;
