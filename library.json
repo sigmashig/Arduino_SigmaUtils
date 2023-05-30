@@ -1,0 +1,24 @@
+{
+    "name": "SigmaUtils",
+    "version": "0.1.0",
+    "description": "The library, provides a set of utilities",
+    "keywords": "Loger,WiFiInfo, BoardInfo",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sigmashig/Arduino_SigmaUtils.git"
+    },
+    "authors": [
+        {
+            "name": "Ihor Shevchenko",
+            "email": "igor@ishevchenko.net",
+            "url": "https://github.com/sigmashig/Arduino_SigmaUtils.git"
+        }
+    ],
+    "license": "MIT",
+    "dependencies": {
+        "powerbroker2/SafeString": "^4.1.27"
+    },
+    "homepage": "https://github.com/sigmashig/Arduino_SigmaUtils",
+    "frameworks": "arduino",
+    "platforms": "atmelavr, espressif8266"
+}
