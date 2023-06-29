@@ -2,15 +2,15 @@
 
 void SigmaLoger::Log(SigmaLogLevel level)
 {
+	if (timestamp != NULL)
+	{
+		loger->prefix(timestamp());
+	}
 	if (publisher != NULL)
 	{
 		publisher(level, loger->c_str());
 	}
 	loger->clear();
-	if (timestamp != NULL)
-	{
-		loger->concat('[').concat(timestamp()).concat("] ");
-	}
 }
 
 SigmaLoger::SigmaLoger(int size, SigmaLogPublisher publisher, SigmaLogTimestamp timestamp)
@@ -18,10 +18,6 @@ SigmaLoger::SigmaLoger(int size, SigmaLogPublisher publisher, SigmaLogTimestamp 
 {
 	loger_SAFEBUFFER = new char[size + 1];
 	loger = new SafeString(size, loger_SAFEBUFFER, "");
-	if (timestamp != NULL)
-	{
-		loger->concat('[').concat(timestamp()).concat("] ");
-	}
 }
 
 SigmaLoger &SigmaLoger::printf(const char *format, va_list args)
@@ -52,9 +48,18 @@ void SigmaLoger::SerialPrint(SigmaLogLevel level, const char *message)
 
 const char *SigmaLoger::Timestamp()
 {
-	static char timestamp[16];
-	sprintf(timestamp, "%.3f", millis() / 1000.0);
-	return timestamp;
+	static char timest[20];
+	unsigned long ts = millis();
+	int l;
+	timest[0] = '[';
+	itoa(ts / 1000, timest + 1, 10);
+	l = strlen(timest);
+	timest[l] = '.';
+	itoa(ts % 1000, timest + l + 1, 10);
+	l = strlen(timest);
+	timest[l] = ']';
+	timest[l + 1] = 0;
+	return timest;
 }
 
 SigmaLoger *Log;

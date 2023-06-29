@@ -12,7 +12,7 @@ const char *my_timestamp()
 {
   // You can add any function here: get timestamp from RTC, from NTP, etc.
   static char timestamp[16];
-  sprintf(timestamp, "ts=%.3f", millis() / 1000.0);
+  sprintf(timestamp, "{ts=%.3f}", millis() / 1000.0);
   return timestamp;
 }
 
@@ -40,6 +40,12 @@ void setup()
   sigmaLoger3->Append(F("LOG3.Hello, ")).Append("World!").Debug();
   sigmaLoger3->Debug("LOG3.Just a simple message");
   sigmaLoger3->Printf("LOG3.This is a %s message", "formatted").Log(level);
+
+  sigmaLoger2->Append(F("LOG1.Start Delayed message ts =")).Append(millis()).Debug();
+  delay(1000);
+  sigmaLoger2->Append(F("LOG1.Delayed message ts =")).Append(millis()).Debug();
+
+  // test for delayed message
 }
 
 void loop()
